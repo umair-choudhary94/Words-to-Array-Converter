@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Words To Array Converter - Engr Umair</title>
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css"
+    rel="stylesheet"
+    />
+
+
+</head>
+<body>
+    <div class="container">
+        <div class="card shadow-0 border p-md-4 p-2 mt-2">
+          <div class="text-center mt-2">
+            <h1>Words to Array Converter</h1>
+            <p>That Tool is developed by Engr Umair</p>
+            <a href="https://www.facebook.com/umair.choudhary.9494/">Follow Engr Umair</a>
+          </div>
+          <hr>
+    
+          <div class="row mt-5">
+                <div class="col-md-6">
+                    <!-- <p>Enter some words separated by spaces:</p> -->
+                    <textarea id="words"  class="form-control" placeholder="Enter text here..."></textarea>
+                    <div class="mt-2">
+                        <button onclick="convert()" class="btn btn-primary">Convert</button>
+                        <button onclick="clearAll()" class="btn btn-secondary">Clear</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col">
+                            <!-- <label for="pythonArray">Python:</label> -->
+                            <textarea id="pythonArray" readonly class="form-control"  placeholder="Python"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button onclick="copyOutput('pythonArray')" class="btn btn-secondary float-end mb-2">Copy</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <!-- <label for="jsArray">JavaScript:</label> -->
+                            <textarea id="jsArray"  readonly class="form-control" placeholder="JavaScript"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button onclick="copyOutput('jsArray')" class="btn btn-secondary float-end mb-2">Copy</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            
+                            <!-- <label for="phpArray">PHP:</label><br> -->
+                            <textarea id="phpArray"  readonly class="form-control"  placeholder="PHP"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button onclick="copyOutput('phpArray')" class="btn btn-secondary float-end mb-2">Copy</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <textarea id="perlArray"  readonly class="form-control"  placeholder="Perl"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button onclick="copyOutput('perlArray')" class="btn btn-secondary float-end mb-2">Copy</button>
+                        </div>
+                    </div>
+            
+                </div>
+          </div>
+        
+        </div>
+    </div>
+        
+    
+        <script type="text/javascript">
+            function convert() {
+                // Get user input
+                var words = document.getElementById("words").value;
+                
+                // Split input into array of words
+                var wordArray = words.split(" ");
+                
+                // Convert to Python array
+                var pythonArray = "words = [" + wordArray.map(function(word) {
+                    return "'" + word + "'";
+                }).join(", ") + "]";
+                
+                // Convert to JavaScript array
+                var jsArray = "var words = [" + wordArray.map(function(word) {
+                    return "'" + word + "'";
+                }).join(", ") + "];";
+                
+                // Convert to PHP array
+                var phpArray = "$words = array(" + wordArray.map(function(word) {
+                    return "'" + word + "'";
+                }).join(", ") + ");";
+                
+                // Convert to Perl array
+                var perlArray = "@words = (" + wordArray.map(function(word) {
+                    return "'" + word + "'";
+                }).join(", ") + ");";
+                
+                // Display arrays in output textareas
+                document.getElementById("pythonArray").value = pythonArray;
+                document.getElementById("jsArray").value = jsArray;
+                document.getElementById("phpArray").value = phpArray;
+                document.getElementById("perlArray").value = perlArray;
+            }
+            
+            function clearAll() {
+                document.getElementById("words").value = "";
+                document.getElementById("pythonArray").value = "";
+                document.getElementById("jsArray").value = "";
+                document.getElementById("phpArray").value = "";
+                document.getElementById("perlArray").value = "";
+            }
+            
+            function copyOutput(textareaId) {
+                var output = document.getElementById(textareaId);
+                output.select();
+                document.execCommand("copy");
+                alert("Copied to clipboard: " + output.value);
+            }
+        </script>
+    <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"
+    ></script>
+    
+</body>
+</html>
